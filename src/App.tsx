@@ -6,11 +6,8 @@ import { encryptStorage } from './utilities/encryptedStorage';
 import AppRoutes from './AppRoutes';
 import { retrieveTokenFromEncryptedStorage } from './utilities/retrieveTokenFromEncryptedStorage';
 import Navbar from './components/Navbar/Navbar';
-
-type User = {
-  _id: string;
-  username: string;
-};
+import { User } from './types/userType';
+import { InfoType } from './types/infoTypes';
 
 function App() {
   const [token, setToken] = useState<string | null>(
@@ -49,7 +46,7 @@ function App() {
           }
         }
         const data = await response.json();
-        setAuthUser(data);
+        setAuthUser(data?.user);
         setIsAuth(true);
         setLoading(false);
       } catch (error: unknown) {
@@ -78,6 +75,15 @@ function App() {
     }
   }, [token]);
 
+  useEffect(() => {
+    const welcome_message = {
+      typeOfInfo: 'good',
+      message: `Welcome, ${authUser?.username}!`,
+      icon: '😎',
+    };
+    if (isAuth && authUser?.username) setInfo(welcome_message as InfoType);
+  }, [authUser?.username, isAuth, setInfo]);
+
   const LoginContent = (
     <>
       <AdminLoginPage setToken={setToken} />
@@ -87,7 +93,12 @@ function App() {
 
   const AppContent = (
     <>
-      <Navbar />
+      <Navbar
+        setToken={setToken}
+        setAuthUser={setAuthUser}
+        setIsAuth={setIsAuth}
+        setInfo={setInfo}
+      />
       <AppRoutes isAuth={isAuth} token={token} />
       <InfoCard info={info} />
     </>
