@@ -17,7 +17,7 @@ export default function Navbar({
   setInfo,
 }: NavbarProps) {
   return (
-    <nav className="w-full bg-sky-800 flex flex-col md:flex-row gap-4 p-4 text-center">
+    <nav className="sticky top-0 right-0 w-full bg-sky-800 flex flex-col md:flex-row gap-4 p-4 text-center">
       <NavLink
         to="/posts"
         className={({ isActive }) =>

@@ -92,7 +92,7 @@ function App() {
   );
 
   const AppContent = (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Navbar
         setToken={setToken}
         setAuthUser={setAuthUser}
@@ -101,7 +101,7 @@ function App() {
       />
       <AppRoutes isAuth={isAuth} token={token} />
       <InfoCard info={info} />
-    </>
+    </div>
   );
 
   return isAuth ? AppContent : LoginContent;
