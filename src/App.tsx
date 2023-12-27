@@ -6,7 +6,7 @@ import { encryptStorage } from './utilities/encryptedStorage';
 import AppRoutes from './AppRoutes';
 import { retrieveTokenFromEncryptedStorage } from './utilities/retrieveTokenFromEncryptedStorage';
 import Navbar from './components/Navbar/Navbar';
-import { User } from './types/userType';
+import { CurrentUser } from './types/userType';
 import { InfoType } from './types/infoTypes';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     retrieveTokenFromEncryptedStorage()
   );
   const { info, setInfo } = useInfoCard();
-  const [authUser, setAuthUser] = useState<User | null>(null);
+  const [authUser, setAuthUser] = useState<CurrentUser | null>(null);
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [tokenExpiration, setTokenExpiration] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

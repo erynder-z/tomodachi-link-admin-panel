@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { InfoType } from '../../types/infoTypes';
-import { User } from '../../types/userType';
+import { CurrentUser } from '../../types/userType';
 import { encryptStorage } from '../../utilities/encryptedStorage';
 
 type LogoutButtonProps = {
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
-  setAuthUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setAuthUser: React.Dispatch<React.SetStateAction<CurrentUser | null>>;
   setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
   setInfo: (info: InfoType | null) => void;
 };

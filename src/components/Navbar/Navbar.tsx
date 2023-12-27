@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import { User } from '../../types/userType';
+import { CurrentUser } from '../../types/userType';
 import { InfoType } from '../../types/infoTypes';
 import LogoutButton from '../LogoutButton/LogoutButton';
 
 type NavbarProps = {
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
-  setAuthUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setAuthUser: React.Dispatch<React.SetStateAction<CurrentUser | null>>;
   setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
   setInfo: (info: InfoType | null) => void;
 };
