@@ -89,7 +89,10 @@ export default function Post({
         <article>{textExcerpt}</article>
       </div>
       <section className="flex flex-col justify-between">
-        <Link to={linkTarget}>Details</Link>
+        <Link to={linkTarget} state={{ postData }}>
+          Details
+        </Link>
+
         <button onClick={handleDeleteClick}>Delete</button>
       </section>
       {showConfirmation && (
