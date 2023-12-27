@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns/format';
 import { useState } from 'react';
 import {
@@ -7,12 +7,24 @@ import {
   MdThumbDownOffAlt,
 } from 'react-icons/md';
 import PostCommentSection from '../PostCommentSection/PostCommentSection';
+import ConfirmationOverlay from '../ConfirmationOverlay/ConfirmationOverlay';
+import { handleFetchErrors } from '../../utilities/handleFetchErrors';
+import { displaySuccessInfo } from '../../utilities/displaySuccessInfo';
+import { displayErrorInfo } from '../UserNotification/displayErrorInfo';
+import useInfoCard from '../../hooks/useInfoCard';
 
-export default function SinglePost() {
+type SinglePostProps = {
+  token: string | null;
+};
+
+export default function SinglePost({ token }: SinglePostProps) {
+  const { setInfo } = useInfoCard();
   const location = useLocation();
+  const navigate = useNavigate();
   const postData = location.state.postData;
 
   const [showCommentSection, setShowCommentSection] = useState<boolean>(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const { _id, text, createdAt, comments, reactions, gifUrl } = postData;
   const { firstName, lastName, userpic } = postData.owner;
@@ -24,6 +36,36 @@ export default function SinglePost() {
 
   const handleShowCommentsClick = () =>
     setShowCommentSection(!showCommentSection);
+
+  const handleDeleteClick = async () => {
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+      const response = await fetch(`${SERVER_URL}/api/v1/admin/post/${_id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) handleFetchErrors(response, setInfo);
+
+      displaySuccessInfo(setInfo, 'Post deleted!', '🗑️');
+    } catch (err: unknown) {
+      displayErrorInfo(setInfo, 'Unable to delete post!', '👻');
+    } finally {
+      setShowConfirmation(false);
+      navigate('/posts');
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmation(false);
+  };
 
   return (
     <div className="flex flex-col gap-2 p-4">
@@ -80,7 +122,7 @@ export default function SinglePost() {
           onClick={handleShowCommentsClick}
           className="flex justify-center items-center gap-1"
         >
-          <MdOutlineModeComment /> {reactions?.length}
+          <MdOutlineModeComment /> {comments?.length}
         </button>
         <div className="flex justify-center items-center gap-1">
           <MdThumbUpOffAlt /> {reactions?.positive}
@@ -93,6 +135,18 @@ export default function SinglePost() {
         <PostCommentSection
           comments={comments}
           handleShowCommentsClick={handleShowCommentsClick}
+        />
+      )}
+      <button
+        onClick={handleDeleteClick}
+        className="w-full bg-red-500 hover:bg-red-600 text-neutral-50 p-2"
+      >
+        Delete post
+      </button>
+      {showConfirmation && (
+        <ConfirmationOverlay
+          handleConfirmDelete={handleConfirmDelete}
+          handleCancelDelete={handleCancelDelete}
         />
       )}
     </div>

@@ -21,7 +21,7 @@ export default function AppRoutes({ isAuth, token }: AppRoutesProps) {
         <Route path="/posts" element={<PostList token={token} />} />
         <Route path="/polls" element={<PollList token={token} />} />
         <Route path="/users" element={<UserList token={token} />} />
-        <Route path="/posts/:id" element={<SinglePost />} />
+        <Route path="/posts/:id" element={<SinglePost token={token} />} />
       </Route>
     </Routes>
   );
