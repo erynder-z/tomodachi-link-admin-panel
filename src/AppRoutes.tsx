@@ -5,6 +5,7 @@ import PostList from './components/PostList/PostList';
 import PollList from './components/PollList/PollList';
 import UserList from './components/UserList/UserList';
 import SinglePost from './components/SinglePost/SinglePost';
+import SinglePoll from './components/SinglePoll/SinglePoll';
 
 type AppRoutesProps = {
   isAuth: boolean;
@@ -22,6 +23,7 @@ export default function AppRoutes({ isAuth, token }: AppRoutesProps) {
         <Route path="/polls" element={<PollList token={token} />} />
         <Route path="/users" element={<UserList token={token} />} />
         <Route path="/posts/:id" element={<SinglePost token={token} />} />
+        <Route path="/polls/:id" element={<SinglePoll token={token} />} />
       </Route>
     </Routes>
   );

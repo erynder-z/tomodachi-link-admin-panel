@@ -1,30 +1,30 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useInfoCard from '../../hooks/useInfoCard';
+import { RetrievedPollDataType } from '../../types/pollTypes';
 import { useNavigate } from 'react-router-dom';
 import { backendFetch } from '../../utilities/backendFetch';
 import { handleFetchErrors } from '../../utilities/handleFetchErrors';
-import { UserType } from '../../types/userType';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import User from '../User/User';
+import Poll from '../Poll/Poll';
 
-type UserListProps = {
+type PollListProps = {
   token: string | null;
 };
 
-export default function UserList({ token }: UserListProps) {
+export default function PollList({ token }: PollListProps) {
   const { setInfo } = useInfoCard();
-  const [users, setUsers] = useState<UserType[]>([]);
+  const [polls, setPolls] = useState<RetrievedPollDataType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   const shouldFetch = useRef(true);
 
-  const handleFetchUsers = useCallback(async () => {
+  const handleFetchPolls = useCallback(async () => {
     try {
       if (token) {
-        const apiEndpointURL = `/api/v1/admin/users`;
+        const apiEndpointURL = `/api/v1/admin/polls`;
         const method = 'GET';
-        const errorMessage = 'Unable to fetch posts!';
+        const errorMessage = 'Unable to fetch polls!';
         const response = await backendFetch(
           token,
           setInfo,
@@ -34,7 +34,7 @@ export default function UserList({ token }: UserListProps) {
         );
 
         if (!response.ok) handleFetchErrors(response, setInfo);
-        setUsers(response.users);
+        setPolls(response.polls);
       }
     } catch (error) {
       navigate('/forbidden');
@@ -43,24 +43,35 @@ export default function UserList({ token }: UserListProps) {
     }
   }, [token, setInfo, navigate]);
 
+  const onPollChange = useCallback(() => {
+    setLoading(true);
+    handleFetchPolls();
+  }, [handleFetchPolls]);
+
   useEffect(() => {
-    if (shouldFetch.current) handleFetchUsers();
+    if (shouldFetch.current) handleFetchPolls();
 
     return () => {
       shouldFetch.current = false;
     };
-  }, [setInfo, token, handleFetchUsers]);
+  }, [setInfo, token, handleFetchPolls]);
 
-  const userItemList = users?.map((user, index) => (
-    <User key={user._id} userData={user} itemIndex={index} />
+  const pollItemsList = polls?.map((poll, index) => (
+    <Poll
+      key={poll._id}
+      token={token}
+      pollData={poll}
+      itemIndex={index}
+      onPollChange={onPollChange}
+    />
   ));
 
-  const LoadingContent = <LoadingSpinner message="Loading Users" />;
+  const LoadingContent = <LoadingSpinner message="Loading Polls" />;
 
   const NormalContent = (
     <div className="flex flex-col">
-      <h1 className="text-xl font-bold text-center bg-slate-300">User List</h1>
-      {userItemList}
+      <h1 className="text-xl font-bold text-center bg-slate-300">Poll List</h1>
+      {pollItemsList}
     </div>
   );
 
