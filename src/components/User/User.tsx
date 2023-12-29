@@ -26,7 +26,7 @@ export default function User({ userData, itemIndex }: UserProps) {
   return (
     <div
       className={`w-full flex flex-col flex-1 gap-2 p-4 ${
-        itemIndex % 2 === 0 ? 'bg-cyan-100' : 'bg-sky-100'
+        itemIndex % 2 === 0 ? 'bg-white' : 'bg-neutral-100'
       }`}
     >
       <section className="flex flex-col md:flex-row gap-4 break-all">

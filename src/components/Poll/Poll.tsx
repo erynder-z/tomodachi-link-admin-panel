@@ -7,6 +7,7 @@ import { displayErrorInfo } from '../UserNotification/displayErrorInfo';
 import { useState } from 'react';
 import ConfirmationOverlay from '../ConfirmationOverlay/ConfirmationOverlay';
 import { RetrievedPollDataType } from '../../types/pollTypes';
+import { MdDeleteForever, MdOutlinePlagiarism } from 'react-icons/md';
 
 type PollProps = {
   token: string | null;
@@ -66,7 +67,7 @@ export default function Poll({
   return (
     <div
       className={`w-full flex flex-col md:flex-row flex-1 gap-2 md:gap-8 p-4 ${
-        itemIndex % 2 === 0 ? 'bg-cyan-100' : 'bg-sky-100'
+        itemIndex % 2 === 0 ? 'bg-white' : 'bg-neutral-100'
       }`}
     >
       <div className="flex flex-col w-full">
@@ -87,10 +88,19 @@ export default function Poll({
       </div>
       <section className="flex flex-col justify-between">
         <Link to={linkTarget} state={{ pollData }}>
-          Details
+          <MdOutlinePlagiarism
+            size="1.5em"
+            className="text-sky-800 hover:text-sky-500"
+          />
         </Link>
 
-        <button onClick={handleDeleteClick}>Delete</button>
+        <button onClick={handleDeleteClick}>
+          {' '}
+          <MdDeleteForever
+            size="1.5em"
+            className="text-red-600 hover:text-red-400"
+          />
+        </button>
       </section>
       {showConfirmation && (
         <ConfirmationOverlay

@@ -32,7 +32,10 @@ export default function LogoutButton({
     encryptStorage.removeItem('jwtOdinBookAdmin');
   };
   return (
-    <button onClick={handleLogout} className="flex text-neutral-100 md:ml-auto">
+    <button
+      onClick={handleLogout}
+      className="flex text-neutral-50 md:ml-auto p-2 md:p-4 hover:bg-red-600"
+    >
       <span className="mx-auto">Logout</span>
     </button>
   );

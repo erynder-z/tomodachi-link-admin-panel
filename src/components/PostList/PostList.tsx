@@ -66,12 +66,7 @@ export default function PostList({ token }: PostListProps) {
 
   const LoadingContent = <LoadingSpinner message="Loading Posts" />;
 
-  const NormalContent = (
-    <div className="flex flex-col">
-      <h1 className="text-xl font-bold text-center bg-slate-300">Post List</h1>
-      {postItemsList}
-    </div>
-  );
+  const NormalContent = <div className="flex flex-col">{postItemsList}</div>;
 
   return loading ? LoadingContent : NormalContent;
 }

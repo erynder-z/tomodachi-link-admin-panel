@@ -17,11 +17,13 @@ export default function Navbar({
   setInfo,
 }: NavbarProps) {
   return (
-    <nav className="sticky top-0 right-0 w-full bg-sky-800 flex flex-col md:flex-row gap-4 p-4 text-center">
+    <nav className="sticky top-0 right-0 w-full bg-sky-800 flex flex-col md:flex-row gap-1 md:gap-4 text-center">
       <NavLink
         to="/posts"
         className={({ isActive }) =>
-          isActive ? 'text-amber-500' : 'text-neutral-100 '
+          isActive
+            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-2 md:p-4'
+            : 'text-neutral-50 hover:text-amber-500 p-2 md:p-4'
         }
       >
         Posts
@@ -29,7 +31,9 @@ export default function Navbar({
       <NavLink
         to="/polls"
         className={({ isActive }) =>
-          isActive ? 'text-amber-500' : 'text-neutral-100 '
+          isActive
+            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-2 md:p-4'
+            : 'text-neutral-50 hover:text-amber-500 p-2 md:p-4'
         }
       >
         Polls
@@ -37,7 +41,9 @@ export default function Navbar({
       <NavLink
         to="/users"
         className={({ isActive }) =>
-          isActive ? 'text-amber-500' : 'text-neutral-100 '
+          isActive
+            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-2 md:p-4'
+            : 'text-neutral-50 hover:text-amber-500 p-2 md:p-4'
         }
       >
         Users

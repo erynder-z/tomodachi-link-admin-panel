@@ -55,12 +55,7 @@ export default function UserList({ token }: UserListProps) {
 
   const LoadingContent = <LoadingSpinner message="Loading Users" />;
 
-  const NormalContent = (
-    <div className="flex flex-col">
-      <h1 className="text-xl font-bold text-center bg-slate-300">User List</h1>
-      {userItemList}
-    </div>
-  );
+  const NormalContent = <div className="flex flex-col">{userItemList}</div>;
 
   return loading ? LoadingContent : NormalContent;
 }

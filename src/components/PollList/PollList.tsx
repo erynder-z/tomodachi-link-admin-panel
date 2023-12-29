@@ -65,12 +65,7 @@ export default function PollList({ token }: PollListProps) {
 
   const LoadingContent = <LoadingSpinner message="Loading Polls" />;
 
-  const NormalContent = (
-    <div className="flex flex-col">
-      <h1 className="text-xl font-bold text-center bg-slate-300">Poll List</h1>
-      {pollItemsList}
-    </div>
-  );
+  const NormalContent = <div className="flex flex-col">{pollItemsList}</div>;
 
   return loading ? LoadingContent : NormalContent;
 }
