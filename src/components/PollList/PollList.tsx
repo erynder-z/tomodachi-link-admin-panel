@@ -3,7 +3,6 @@ import useInfoCard from '../../hooks/useInfoCard';
 import { RetrievedPollDataType } from '../../types/pollTypes';
 import { useNavigate } from 'react-router-dom';
 import { backendFetch } from '../../utilities/backendFetch';
-import { handleFetchErrors } from '../../utilities/handleFetchErrors';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Poll from '../Poll/Poll';
 
@@ -32,8 +31,6 @@ export default function PollList({ token }: PollListProps) {
           method,
           errorMessage
         );
-
-        if (!response.ok) handleFetchErrors(response, setInfo);
         setPolls(response.polls);
       }
     } catch (error) {

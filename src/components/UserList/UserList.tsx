@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import useInfoCard from '../../hooks/useInfoCard';
 import { useNavigate } from 'react-router-dom';
 import { backendFetch } from '../../utilities/backendFetch';
-import { handleFetchErrors } from '../../utilities/handleFetchErrors';
 import { UserType } from '../../types/userType';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import User from '../User/User';
@@ -33,7 +32,6 @@ export default function UserList({ token }: UserListProps) {
           errorMessage
         );
 
-        if (!response.ok) handleFetchErrors(response, setInfo);
         setUsers(response.users);
       }
     } catch (error) {

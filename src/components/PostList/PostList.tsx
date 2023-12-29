@@ -4,7 +4,6 @@ import { backendFetch } from '../../utilities/backendFetch';
 import useInfoCard from '../../hooks/useInfoCard';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Post from '../Post/Post';
-import { handleFetchErrors } from '../../utilities/handleFetchErrors';
 import { useNavigate } from 'react-router-dom';
 
 type PostListProps = {
@@ -33,7 +32,6 @@ export default function PostList({ token }: PostListProps) {
           errorMessage
         );
 
-        if (!response.ok) handleFetchErrors(response, setInfo);
         setPosts(response.posts);
       }
     } catch (error) {
