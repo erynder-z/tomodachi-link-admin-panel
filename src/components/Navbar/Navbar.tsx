@@ -2,8 +2,10 @@ import { NavLink } from 'react-router-dom';
 import { CurrentUser } from '../../types/userType';
 import { InfoType } from '../../types/infoTypes';
 import LogoutButton from '../LogoutButton/LogoutButton';
+import Search from '../Search/Search';
 
 type NavbarProps = {
+  token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   setAuthUser: React.Dispatch<React.SetStateAction<CurrentUser | null>>;
   setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,13 +13,14 @@ type NavbarProps = {
 };
 
 export default function Navbar({
+  token,
   setToken,
   setAuthUser,
   setIsAuth,
   setInfo,
 }: NavbarProps) {
   return (
-    <nav className="sticky top-0 right-0 w-full bg-sky-800 flex flex-col md:flex-row gap-1 md:gap-4 text-center">
+    <nav className="sticky top-0 right-0 h-56 md:h-16 w-full bg-sky-800 flex flex-col md:flex-row gap-1 md:gap-4 text-center">
       <NavLink
         to="/posts"
         className={({ isActive }) =>
@@ -48,6 +51,7 @@ export default function Navbar({
       >
         Users
       </NavLink>
+      <Search token={token} />
       <LogoutButton
         setToken={setToken}
         setAuthUser={setAuthUser}

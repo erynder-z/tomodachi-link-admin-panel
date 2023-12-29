@@ -94,6 +94,7 @@ function App() {
   const AppContent = (
     <div className="min-h-screen flex flex-col">
       <Navbar
+        token={token}
         setToken={setToken}
         setAuthUser={setAuthUser}
         setIsAuth={setIsAuth}
