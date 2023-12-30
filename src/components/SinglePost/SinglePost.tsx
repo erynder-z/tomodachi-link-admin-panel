@@ -21,10 +21,18 @@ export default function SinglePost({ token }: SinglePostProps) {
   const { setInfo } = useInfoCard();
   const location = useLocation();
   const navigate = useNavigate();
-  const postData = location.state.postData;
+  const postData = location?.state?.postData;
 
   const [showCommentSection, setShowCommentSection] = useState<boolean>(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  if (!postData) {
+    return (
+      <div className="p-4">
+        <p>No post data available.</p>
+      </div>
+    );
+  }
 
   const { _id, text, createdAt, comments, reactions, gifUrl } = postData;
   const { firstName, lastName, userpic } = postData.owner;

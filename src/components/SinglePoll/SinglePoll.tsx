@@ -21,11 +21,22 @@ export default function SinglePoll({ token }: SinglePollProps) {
   const { setInfo } = useInfoCard();
   const location = useLocation();
   const navigate = useNavigate();
-  const pollData = location.state.pollData as RetrievedPollDataType;
+  const wrapperDivRef = useRef<HTMLDivElement | null>(null);
+  const dimensions = useDimensions(wrapperDivRef);
+  const pollData = location?.state?.pollData as RetrievedPollDataType;
 
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const [typeOfChart, setTypeOfChart] = useState<'PIE' | 'BAR'>('PIE');
+
+  if (!pollData) {
+    return (
+      <div className="p-4">
+        <p>No poll data available.</p>
+      </div>
+    );
+  }
+
   const { userpic, firstName, lastName } = pollData.owner;
   const { _id, createdAt, question, description, options, comments } = pollData;
   const userPic = userpic.data;
@@ -34,10 +45,6 @@ export default function SinglePoll({ token }: SinglePollProps) {
     (option) => option.selectionCount === 0
   );
   const hasDescription = pollData.description;
-
-  const wrapperDivRef = useRef<HTMLDivElement | null>(null);
-  // Get the dimensions of the wrapper div.
-  const dimensions = useDimensions(wrapperDivRef);
 
   const handleDeleteClick = async () => {
     setShowConfirmation(true);

@@ -3,7 +3,16 @@ import { useLocation } from 'react-router-dom';
 
 export default function SingleUser() {
   const location = useLocation();
-  const userData = location.state.userData;
+  const userData = location?.state?.userData;
+
+  if (!userData) {
+    return (
+      <div className="p-4">
+        <p>No user data available.</p>
+      </div>
+    );
+  }
+
   const {
     _id,
     firstName,
