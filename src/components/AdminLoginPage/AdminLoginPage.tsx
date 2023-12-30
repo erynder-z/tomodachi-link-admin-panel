@@ -6,7 +6,6 @@ import { generateAsciiImage } from '../../utilities/generateAsciiImage';
 import { introBackground } from '../../assets/intro';
 import VerifyingInfoBox from './VerifyingInfoBox';
 import AdminLoginForm from '../AdminLoginForm/AdminLoginForm';
-import { motion, AnimatePresence } from 'framer-motion';
 
 type AdminLoginPageProps = {
   setToken: (token: string | null) => void;
@@ -91,19 +90,8 @@ export default function AdminLoginPage({ setToken }: AdminLoginPageProps) {
 
   const LoginContent = (
     <>
-      <motion.div
-        key="greeting"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      ></motion.div>
-      <motion.div
-        key="loginForm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className=" w-5/6 md:w-1/2 mx-auto  bg-white shadow-lg p-4 lg:p-8 rounded lg:rounded-lg h-90 md:h-6/8"
-      >
+      <div></div>
+      <div className=" w-5/6 md:w-1/2 mx-auto  bg-white shadow-lg p-4 lg:p-8 rounded lg:rounded-lg h-90 md:h-6/8">
         {isVerifying ? (
           <VerifyingInfoBox />
         ) : (
@@ -114,16 +102,14 @@ export default function AdminLoginPage({ setToken }: AdminLoginPageProps) {
             />
           </>
         )}
-      </motion.div>
+      </div>
     </>
   );
 
   return (
     <div className="h-screen bg-cBlack overflow-auto flex justify-center items-center">
       {AsciiBackground}
-      <div className="w-full md:w-1/2 relative z-10">
-        <AnimatePresence>{LoginContent}</AnimatePresence>
-      </div>
+      <div className="w-full md:w-1/2 relative z-10">{LoginContent}</div>
     </div>
   );
 }

@@ -1,7 +1,5 @@
 import { Oval } from 'react-loader-spinner';
 
-import { AnimatePresence, motion } from 'framer-motion';
-
 type LoadingSpinnerProps = {
   message?: string;
 };
@@ -15,19 +13,11 @@ export default function LoadingSpinner({ message }: LoadingSpinnerProps) {
 
   return (
     <div className="h-full w-full m-auto flex flex-col justify-center items-center gap-4">
-      <AnimatePresence>
-        {message && (
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="font-bold text-center text-loading dark:text-loadingDark"
-          >
-            {message}
-          </motion.h1>
-        )}{' '}
-      </AnimatePresence>
+      {message && (
+        <h1 className="font-bold text-center text-loading dark:text-loadingDark">
+          {message}
+        </h1>
+      )}{' '}
       <Oval
         height={30}
         width={30}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { InfoType } from '../../types/infoTypes';
-import { motion } from 'framer-motion';
 
 type infoCardPropsType = {
   info: InfoType | null;
@@ -54,13 +53,12 @@ const InfoCard = ({ info }: infoCardPropsType) => {
         <h2 className="text-sm md:text-2xl font-semibold text-center">
           {info?.message}
         </h2>
-        <motion.button
+        <button
           onClick={() => setIsVisible(false)}
-          whileTap={{ scale: 0.97 }}
           className="text-red-400 hover:text-red-500 ml-4"
         >
           X
-        </motion.button>
+        </button>
       </div>
     </div>
   );
