@@ -7,6 +7,7 @@ import UserList from './components/UserList/UserList';
 import SinglePost from './components/SinglePost/SinglePost';
 import SinglePoll from './components/SinglePoll/SinglePoll';
 import SingleUser from './components/SingleUser/SingleUser';
+import ForbiddenPage from './components/ForbiddenPage/ForbiddenPage';
 
 type AppRoutesProps = {
   isAuth: boolean;
@@ -20,6 +21,7 @@ export default function AppRoutes({ isAuth, token }: AppRoutesProps) {
       <Route element={<RequireAuth isAuth={isAuth} />}>
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<Navigate replace to="/posts" />} />
+        <Route path="/forbidden" element={<ForbiddenPage />} />
         <Route path="/posts" element={<PostList token={token} />} />
         <Route path="/polls" element={<PollList token={token} />} />
         <Route path="/users" element={<UserList token={token} />} />
