@@ -8,8 +8,11 @@ import { retrieveTokenFromEncryptedStorage } from './utilities/retrieveTokenFrom
 import Navbar from './components/Navbar/Navbar';
 import { CurrentUser } from './types/userType';
 import { InfoType } from './types/infoTypes';
+import TokenInfo from './components/TokenInfo/TokenInfo';
+import { useLocation } from 'react-router-dom';
 
 function App() {
+  const pathname = useLocation();
   const [token, setToken] = useState<string | null>(
     retrieveTokenFromEncryptedStorage()
   );
@@ -17,7 +20,6 @@ function App() {
   const [authUser, setAuthUser] = useState<CurrentUser | null>(null);
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [tokenExpiration, setTokenExpiration] = useState<number | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (token) {
@@ -39,20 +41,24 @@ function App() {
           },
         });
         if (!response.ok) {
-          if (response.status === 401) {
-            throw new Error('Unauthorized: Token is expired');
-          } else {
-            throw new Error(`Error: ${response.status} ${response.statusText}`);
-          }
+          const logout_message = {
+            typeOfInfo: 'bad',
+            message: 'Token has expired! Please log in again.',
+            icon: '⛔',
+          };
+          setInfo(logout_message as InfoType);
+          setIsAuth(false);
+          setToken(null);
+          setAuthUser(null);
+          setTokenExpiration(null);
+          return;
         }
         const data = await response.json();
         setAuthUser(data?.user);
         setIsAuth(true);
-        setLoading(false);
       } catch (error: unknown) {
         setAuthUser(null);
         setIsAuth(false);
-        setLoading(false);
         console.error(error);
       }
     };
@@ -70,10 +76,8 @@ function App() {
     if (token) {
       checkToken();
       getTokenExpirationTime();
-    } else {
-      setLoading(false);
     }
-  }, [token]);
+  }, [token, pathname, setInfo]);
 
   useEffect(() => {
     const welcome_message = {
@@ -102,6 +106,7 @@ function App() {
       />
       <AppRoutes isAuth={isAuth} token={token} />
       <InfoCard info={info} />
+      <TokenInfo tokenExpiration={tokenExpiration} />
     </div>
   );
 
