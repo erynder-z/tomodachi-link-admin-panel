@@ -20,13 +20,23 @@ export default function Navbar({
   setInfo,
 }: NavbarProps) {
   return (
-    <nav className="sticky top-0 right-0 h-56 md:h-16 w-full bg-sky-800 flex flex-col md:flex-row gap-1 md:gap-4 text-center">
+    <nav className="sticky top-0 right-0 h-68 md:h-16 w-full bg-sky-800 flex flex-col md:flex-row gap-1 md:gap-4 text-center">
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          isActive
+            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-1 md:p-4'
+            : 'text-neutral-50 hover:text-amber-500 p-1 md:p-4'
+        }
+      >
+        Dashboard
+      </NavLink>
       <NavLink
         to="/posts"
         className={({ isActive }) =>
           isActive
-            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-2 md:p-4'
-            : 'text-neutral-50 hover:text-amber-500 p-2 md:p-4'
+            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-1 md:p-4'
+            : 'text-neutral-50 hover:text-amber-500 p-1 md:p-4'
         }
       >
         Posts
@@ -35,8 +45,8 @@ export default function Navbar({
         to="/polls"
         className={({ isActive }) =>
           isActive
-            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-2 md:p-4'
-            : 'text-neutral-50 hover:text-amber-500 p-2 md:p-4'
+            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-1 md:p-4'
+            : 'text-neutral-50 hover:text-amber-500 p-1 md:p-4'
         }
       >
         Polls
@@ -45,7 +55,7 @@ export default function Navbar({
         to="/users"
         className={({ isActive }) =>
           isActive
-            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-2 md:p-4'
+            ? 'bg-amber-500 text-neutral-50 hover:text-neutral-50 p-1 md:p-4'
             : 'text-neutral-50 hover:text-amber-500 p-2 md:p-4'
         }
       >
