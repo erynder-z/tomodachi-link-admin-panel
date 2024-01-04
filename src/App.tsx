@@ -30,10 +30,10 @@ function App() {
   }, [token]);
 
   useEffect(() => {
-    const checkToken = async () => {
+    const getUserFromToken = async () => {
       try {
         const SERVER_URL = import.meta.env.VITE_SERVER_URL;
-        const response = await fetch(`${SERVER_URL}/api/v1/check-token`, {
+        const response = await fetch(`${SERVER_URL}/api/v1/token-user`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ function App() {
     };
 
     if (token) {
-      checkToken();
+      getUserFromToken();
       getTokenExpirationTime();
     }
   }, [token, pathname, setInfo]);
