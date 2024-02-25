@@ -17,7 +17,7 @@ export default function Dashboard({ token }: DashboardProps) {
     totalUsers: 0,
     totalPosts: 0,
     totalPolls: 0,
-    providerOdinUsers: 0,
+    providerTomodachiUsers: 0,
     providerGoogleUsers: 0,
     providerDiscordUsers: 0,
   });

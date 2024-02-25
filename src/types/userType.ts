@@ -28,7 +28,7 @@ export type UserType = {
   pendingFriendRequests: UserType[];
   accountType: 'regularUser' | 'guest' | 'fake';
   provider: {
-    name: 'odin' | 'github';
+    name: 'tomodachi' | 'github' | 'google' | 'discord';
     profileId: string;
   };
 

@@ -2,7 +2,7 @@ export type DashboardDataType = {
   totalUsers: number;
   totalPosts: number;
   totalPolls: number;
-  providerOdinUsers: number;
+  providerTomodachiUsers: number;
   providerGoogleUsers: number;
   providerDiscordUsers: number;
 };

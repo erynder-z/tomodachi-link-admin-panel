@@ -23,9 +23,9 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      encryptStorage.setItem('jwtOdinBookAdmin', token);
+      encryptStorage.setItem('jwtTomodachiLinkAdmin', token);
     } else {
-      encryptStorage.removeItem('jwtOdinBookAdmin');
+      encryptStorage.removeItem('jwtTomodachiLinkAdmin');
     }
   }, [token]);
 

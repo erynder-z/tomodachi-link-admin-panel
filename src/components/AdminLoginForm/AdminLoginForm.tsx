@@ -1,4 +1,4 @@
-import ButtonBusy from '../../../../odin-book-frontend/src/components/UiElements/LoadingSpinner/ButtonBusy';
+import ButtonBusy from '../LoadingSpinner/ButtonBusy';
 
 type AdminLoginFormProps = {
   handleLoginSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;

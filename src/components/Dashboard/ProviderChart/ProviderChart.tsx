@@ -14,8 +14,8 @@ export default function ProviderChart({ dashboardData }: ProviderChatProps) {
   const pieChartData = {
     data: [
       {
-        nameOfOption: 'Odin',
-        selectionCount: dashboardData.providerOdinUsers,
+        nameOfOption: 'Tomodachi',
+        selectionCount: dashboardData.providerTomodachiUsers,
       },
       {
         nameOfOption: 'Google',

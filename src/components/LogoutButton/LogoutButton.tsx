@@ -29,7 +29,7 @@ export default function LogoutButton({
     setIsAuth(false);
     setInfo(LOGOUT_INFO as InfoType);
 
-    encryptStorage.removeItem('jwtOdinBookAdmin');
+    encryptStorage.removeItem('jwtTomodachiLinkAdmin');
   };
   return (
     <button

@@ -10,7 +10,9 @@ export default function UserTotals({ dashboardData }: UserTotalsProps) {
       <div>Total Users: {dashboardData?.totalUsers}</div>
       <div>Total Posts: {dashboardData?.totalPosts}</div>
       <div>Total Polls: {dashboardData?.totalPolls}</div>
-      <div>Users registered via Odin: {dashboardData.providerOdinUsers}</div>
+      <div>
+        Users registered via Tomodachi: {dashboardData.providerTomodachiUsers}
+      </div>
       <div>
         Users registered via Google: {dashboardData.providerGoogleUsers}
       </div>
