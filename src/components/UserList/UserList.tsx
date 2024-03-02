@@ -5,6 +5,7 @@ import { backendFetch } from '../../utilities/backendFetch';
 import { UserType } from '../../types/userType';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import User from '../User/User';
+import { addFakeUser } from '../../utilities/addFakeUser';
 
 type UserListProps = {
   token: string | null;
@@ -41,6 +42,12 @@ export default function UserList({ token }: UserListProps) {
     }
   }, [token, setInfo, navigate]);
 
+  const handleAddFakeUser = async (): Promise<void> => {
+    if (token) {
+      await addFakeUser(token, setInfo);
+    }
+  };
+
   useEffect(() => {
     if (shouldFetch.current) handleFetchUsers();
 
@@ -53,9 +60,23 @@ export default function UserList({ token }: UserListProps) {
     <User key={user._id} userData={user} itemIndex={index} />
   ));
 
+  const createFakeUserButton = (
+    <button
+      onClick={handleAddFakeUser}
+      className="w-fit p-2 bg-amber-500 text-neutral-50 hover:text-neutral-50 hover:bg-amber-600"
+    >
+      Add fake user
+    </button>
+  );
+
   const LoadingContent = <LoadingSpinner message="Loading Users" />;
 
-  const NormalContent = <div className="flex flex-col">{userItemList}</div>;
+  const NormalContent = (
+    <div className="flex flex-col justify-center items-center gap-4 mt-4">
+      {createFakeUserButton}
+      {userItemList}
+    </div>
+  );
 
   return loading ? LoadingContent : NormalContent;
 }
