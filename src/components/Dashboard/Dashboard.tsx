@@ -6,6 +6,7 @@ import { DashboardDataType } from '../../types/dashboardDataType';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import UserTotals from './UserTotals/UserTotals';
 import ProviderChart from './ProviderChart/ProviderChart';
+import LatestLoginDate from './LatestActivity/LatestActivity';
 
 type DashboardProps = {
   token: string | null;
@@ -20,6 +21,7 @@ export default function Dashboard({ token }: DashboardProps) {
     providerTomodachiUsers: 0,
     providerGoogleUsers: 0,
     providerDiscordUsers: 0,
+    latestLoginDate: new Date(),
   });
   const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
@@ -62,6 +64,7 @@ export default function Dashboard({ token }: DashboardProps) {
   const NormalContent = (
     <div className="p-1 md:p-4">
       <UserTotals dashboardData={dashboardData} />
+      <LatestLoginDate latestLoginDate={dashboardData?.latestLoginDate} />
       <ProviderChart dashboardData={dashboardData} />
     </div>
   );

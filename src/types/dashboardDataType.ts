@@ -5,4 +5,5 @@ export type DashboardDataType = {
   providerTomodachiUsers: number;
   providerGoogleUsers: number;
   providerDiscordUsers: number;
+  latestLoginDate: Date;
 };
