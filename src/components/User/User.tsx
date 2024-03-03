@@ -13,6 +13,7 @@ export default function User({ userData, itemIndex }: UserProps) {
     lastName,
     username,
     userpic,
+    about,
     email,
     accountType,
     joined,
@@ -43,6 +44,10 @@ export default function User({ userData, itemIndex }: UserProps) {
         <div className="flex gap-2">
           <span className="font-bold">Full name: </span>
           {firstName} {lastName}
+        </div>
+        <div className="flex gap-2">
+          <span className="font-bold">About: </span>
+          {about}
         </div>
         <div className="flex gap-2">
           <span className="font-bold">Email: </span>

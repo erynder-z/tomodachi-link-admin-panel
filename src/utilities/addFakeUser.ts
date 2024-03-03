@@ -13,7 +13,7 @@ export const addFakeUser = async (
   setInfo: (info: InfoType | null) => void
 ): Promise<void> => {
   try {
-    const password = import.meta.env.VITE_FAKE_SIGNUP_PASSWORD;
+    const password = import.meta.env.VITE_FAKE_SIGNUP_PASSWORD; 
     const SERVER_URL = import.meta.env.VITE_SERVER_URL;
     const response = await fetch(`${SERVER_URL}/api/v1/fakesignup`, {
       method: 'POST',
