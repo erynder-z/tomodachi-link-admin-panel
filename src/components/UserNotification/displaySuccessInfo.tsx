@@ -1,14 +1,14 @@
-import { InfoType } from '../../../types/infoTypes';
+import { InfoType } from '../../types/infoTypes';
 
 export const displaySuccessInfo = (
-    setInfo: (info: InfoType | null) => void,
-    successMessage: string,
-    emoji: string
+  setInfo: (info: InfoType | null) => void,
+  successMessage: string,
+  emoji: string
 ) => {
-    const successInfo = {
-        typeOfInfo: 'good',
-        message: successMessage,
-        icon: emoji,
-    };
-    setInfo(successInfo as InfoType);
+  const successInfo = {
+    typeOfInfo: 'good',
+    message: successMessage,
+    icon: emoji,
+  };
+  setInfo(successInfo as InfoType);
 };
