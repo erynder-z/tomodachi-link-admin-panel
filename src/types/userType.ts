@@ -13,6 +13,7 @@ export type UserType = {
   firstName: string;
   lastName: string;
   username: string;
+  about?: string;
   userpic: {
     data: unknown;
     contentType: string;
@@ -40,5 +41,6 @@ export type MinimalUserTypes = {
   _id: string;
   firstName: string;
   lastName: string;
+  about?: string;
   userpic: ImageType;
 };
