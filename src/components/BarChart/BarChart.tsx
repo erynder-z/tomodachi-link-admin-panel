@@ -51,7 +51,7 @@ export const BarChart = ({ dimensions, data }: BarChartProps) => {
 
   // X axis
   const xScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.selectionCount));
+    const [max] = d3.extent(data.map((d) => d.selectionCount));
     return d3
       .scaleLinear()
       .domain([0, max || 10])
