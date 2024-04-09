@@ -12,6 +12,7 @@ import { handleFetchErrors } from '../../utilities/handleFetchErrors';
 import { displaySuccessInfo } from '../../utilities/displaySuccessInfo';
 import { displayErrorInfo } from '../UserNotification/displayErrorInfo';
 import useInfoCard from '../../hooks/useInfoCard';
+import { unescapeString } from '../../utilities/unescapeString';
 
 type SinglePostProps = {
   token: string | null;
@@ -90,7 +91,7 @@ export default function SinglePost({ token }: SinglePostProps) {
         <div>{date}</div>
       </section>
       <section className="text-xs">post id: {_id}</section>
-      <article>{text}</article>
+      <article>{unescapeString(text)}</article>
       {postImage && (
         <div className="flex justify-center">
           <img

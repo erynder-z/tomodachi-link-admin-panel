@@ -9,6 +9,7 @@ import { displayErrorInfo } from '../UserNotification/displayErrorInfo';
 import { useState } from 'react';
 import ConfirmationOverlay from '../ConfirmationOverlay/ConfirmationOverlay';
 import { MdDeleteForever, MdOutlinePlagiarism } from 'react-icons/md';
+import { unescapeString } from '../../utilities/unescapeString';
 
 type PostProps = {
   token: string | null;
@@ -87,7 +88,7 @@ export default function Post({
           <div>{date}</div>
         </section>
         <section className="text-xs">post id: {_id}</section>
-        <article>{textExcerpt}</article>
+        <article>{unescapeString(textExcerpt)}</article>
       </div>
       <section className="flex flex-col justify-between items-center">
         <Link to={linkTarget} state={{ postData }}>
