@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+# Tomodachi-Link Admin Panel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An admin panel to moderate content for Tomodachi-Link.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  Clone the repository to your local machine: `git clone https://github.com/erynder-z/tomodachi-link-admin-panel.git`
+2.  Navigate to the project directory: `cd tomodachi-link-admin-panel`
+3.  Install the required dependencies: `npm install`
+4.  Start the development server: `npm run dev`
 
-## Expanding the ESLint configuration
+## Usage
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 1. Setup Environment Variables
 
-- Configure the top-level `parserOptions` property like this:
+Before running the application, ensure you have set up the following environment variables in a `.env` file:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```shell
+VITE_SERVER_URL=<URL_of_the_Server_running_the_backend>
+VITE_STORAGE_ENCRYPTION_KEY=<secret_key_for_the_encrypted_localstorage>
+VITE_FAKE_SIGNUP_PASSWORD=<Placeholder_password_used_during_fake_user_generation>
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 2. Install Tomodachi-Link Backend
+
+The backend for Tomodachi-Link is a separate repo, so you need to install and run the [Tomodachi-Link Backend](https://github.com/erynder-z/tomodachi-link-backend).
+
+## Acknowledgments
+
+- [vite](https://vitejs.dev/) - Next generation frontend tooling.
+- [typescript](https://www.typescriptlang.org/) - Typed superset of JavaScript.
+- [tailwindcss](https://tailwindcss.com/) - Utility-first CSS framework.
+- [d3](https://d3js.org/) - A JavaScript library for manipulating documents based on data.
+- [date-fns](https://date-fns.org/) - Modern JavaScript date utility library.
+- [emoji-picker-react](https://github.com/missive/emoji-picker-react) - React component for picking emojis.
+- [encrypt-storage](https://www.npmjs.com/package/encrypt-storage) - Library for encrypting local storage data.
+- [react](https://reactjs.org/) - A JavaScript library for building user interfaces.
+- [react-icons](https://react-icons.github.io/react-icons/) - Library for icons in React.
+- [react-loader-spinner](https://www.npmjs.com/package/react-loader-spinner) - Loader spinner component for React.
+- [react-router-dom](https://reactrouter.com/web/guides/quick-start) - DOM bindings for React Router.
